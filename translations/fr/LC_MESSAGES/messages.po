@@ -1,0 +1,140 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+
+msgid "EMAIL_CONTACT_EXIST"
+msgstr "L'e-mail ou le contact existe déjà"
+
+msgid "SUCCESSFULL_ADDED"
+msgstr "Utilisateur ajouté avec succès"
+
+msgid "VALIDATION_FAILED"
+msgstr "Validation échouée"
+
+msgid "EMAIL_CONTACT_REQ"
+msgstr "Un e-mail/contact est requis"
+
+msgid "LOGOUT_SUCCESS"
+msgstr "Déconnexion réussie"
+
+msgid "INVALID_PASS"
+msgstr "Mot de passe incorrect"
+
+msgid "INVALID_USER_EMAIL_CONTECT"
+msgstr "E-mail/contact utilisateur invalide"
+
+msgid "SESSION_EXPIRED"
+msgstr "Votre session a expiré ou vous n'êtes pas connecté."
+
+msgid "USER_ID"
+msgstr "ID de l'utilisateur"
+
+msgid "UPDATE_PROFILE"
+msgstr "Mise à jour du profil réussie."
+
+msgid "USER_NOT_FOUND"
+msgstr "Utilisateur non trouvé"
+
+msgid "USER_ADDED"
+msgstr "Détails de l'utilisateur"
+
+msgid "USER_DELETE"
+msgstr "Utilisateur supprimé avec succès"
+
+msgid "LOGIN_SUCCESS"
+msgstr "Connectez-vous avec succès"
+
+msgid "False"
+msgstr "FAUX"
+
+msgid "True"
+msgstr "Vrai"
+
+msgid "MISSIOG_FIELDS"
+msgstr "Champs obligatoires manquants"
+
+msgid "MISSIOG_FIELDS"
+msgstr "Champs obligatoires manquants"
+
+msgid "PLS_ENTER_FNAME"
+msgstr "Entrez votre prénom s'il vous plait"
+
+msgid "FNAME_MIM_2CHAR"
+msgstr "Le prénom doit comporter au moins 2 caractères"
+
+msgid "PLS_ENTER_LNAME"
+msgstr "Veuillez entrer votre nom de famille"
+
+msgid "LNAME_MIM_2CHAR"
+msgstr "Le nom de famille doit comporter au moins 2 caractères"
+
+msgid "EMAIL_INVALID"
+msgstr "Adresse e-mail invalide"
+
+msgid "CONTECT_MIM7_MAX15"
+msgstr "Le numéro de contact doit comporter entre 7 et 15 caractères"
+
+msgid "PLEASE_ENTER_DOB"
+msgstr "Veuillez entrer votre date de naissance"
+
+msgid "SELECT_GENTER"
+msgstr "S'il vous plait selectionnez votre genre"
+
+msgid "ENTRY_COUNTRY"
+msgstr "Veuillez entrer votre pays"
+
+msgid "COUNTRY_MAX50"
+msgstr "Le nom du pays doit comporter moins de 50 caractères"
+
+msgid "ENTRY_STATE"
+msgstr "Veuillez entrer votre état"
+
+msgid "STATE_MAX50"
+msgstr "Le nom de l'État doit comporter moins de 50 caractères"
+
+msgid "ENTRY_CITY"
+msgstr "Veuillez entrer votre ville"
+
+msgid "CITY_MAX50"
+msgstr "Le nom de la ville doit comporter moins de 50 caractères"
+
+msgid "ENTRY_PINCODE"
+msgstr "Veuillez entrer votre code PIN"
+
+msgid "PINCODE_MAX15"
+msgstr "Le code PIN doit contenir moins de 15 caractères"
+
+msgid "ENTRY_PASS"
+msgstr "s'il vous plait entrez votre mot de passe"
+
+msgid "PASSWORD_MIM8"
+msgstr "Le mot de passe doit comporter au moins 8 caractères"
+
+msgid "RGX_PASSWORD_ERROR"
+msgstr "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
+
+msgid "ENTRY_CON_PASS"
+msgstr "Veuillez confirmer votre mot de passe"
+
+msgid "PASS_MATCH"
+msgstr "Les mots de passe doivent correspondre"
+
+msgid "IMAGE_FORMATE"
+msgstr "Seuls les fichiers image sont autorisés"
+
+msgid "UPLOAD_IMAGE"
+msgstr "Veuillez télécharger une image de profil"
+
+msgid "ENTER_HEIGHT"
+msgstr "Veuillez entrer votre taille"
+
+msgid "HEIGHT_IN_DIGITS"
+msgstr "La taille doit être comprise entre 1 et 3 chiffres"
+
+msgid "ENTER_WEIGHT"
+msgstr "Veuillez entrer votre poids"
+
+msgid "WEIGHT_IN_DIGITS"
+msgstr "Le poids doit être compris entre 1 et 3 chiffres"
