@@ -2,13 +2,13 @@ from flask_swagger_ui import get_swaggerui_blueprint
 from flask import send_from_directory
 from flask_babel import Babel, _
 from config.config import db
-from data_base.models.models import Members_Info
+from database.models.models import Members_Info
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_required, AnonymousUserMixin, current_user
 from modules.v1.auth.routes.urls import auth_bp
 from modules.v1.profile.routes.urls import user_bp
 from http import HTTPStatus
-from middilwares import responsHandler
+from middleware import responseHandler
 from flask import request
 from app_name import app
 from api_doc import swagger
@@ -39,7 +39,7 @@ login_manager = LoginManager(app)
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    return responsHandler.response_handler("SESSION_EXPIRED",HTTPStatus.UNAUTHORIZED)
+    return responseHandler.response_handler("SESSION_EXPIRED",HTTPStatus.UNAUTHORIZED)
 
 
 @app.route('/protected')
@@ -49,9 +49,9 @@ def protected():
     if not isinstance(current_user, AnonymousUserMixin):
         user_id = current_user.id
         # Proceed with accessing user-specific data
-        return responsHandler.response_handler("User ID", HTTPStatus.OK, user_id)
+        return responseHandler.response_handler("User ID", HTTPStatus.OK, user_id)
     else:
-        return responsHandler.response_handler("SESSION_EXPIRED",HTTPStatus.SERVICE_UNAVAILABLE)
+        return responseHandler.response_handler("SESSION_EXPIRED",HTTPStatus.SERVICE_UNAVAILABLE)
     
 
 @login_manager.user_loader

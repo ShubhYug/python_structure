@@ -1,9 +1,9 @@
 from config.config import  db, app
-from data_base.models.models import Members_Info
+from database.models.models import Members_Info
 from flask import request, url_for,send_from_directory,jsonify
 from flask_babel import _
 from flask_login import current_user, login_required
-from middilwares import  responsHandler
+from middleware import  responseHandler
 from http import HTTPStatus
 from modules.v1.profile.validator.user_form import UpdateProfileForm
 
@@ -36,9 +36,9 @@ def update_profile():
                 user.profile = file.filename
 
                 db.session.commit()
-                return responsHandler.response_handler("UPDATE_PROFILE", HTTPStatus.OK)
+                return responseHandler.response_handler("UPDATE_PROFILE", HTTPStatus.OK)
             else:
-                return responsHandler.response_handler("USER_NOT_FOUND", HTTPStatus.NOT_FOUND)
+                return responseHandler.response_handler("USER_NOT_FOUND", HTTPStatus.NOT_FOUND)
         else:
             # Handle form validation errors or missing values
             errors = {}
@@ -46,10 +46,10 @@ def update_profile():
                 translated_messages = [_(msg) for msg in messages]
                 errors[field] = ', '.join(translated_messages)
             return jsonify({'error': errors}), HTTPStatus.BAD_REQUEST
-            # return responsHandler.response_handler(errors, HTTPStatus.NOT_FOUND)
+            # return responseHandler.response_handler(errors, HTTPStatus.NOT_FOUND)
     except Exception as e:
         db.session.rollback()
-        return responsHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
+        return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
 # @app.route('/userinfo', methods=['GET'])
@@ -57,7 +57,7 @@ def update_profile():
 def userinfo():
     try:
         user_info = {
-            # 'id': current_user.id,
+            'id': current_user.id,
             'Firstname': current_user.firstname,
             'Lastname': current_user.lastname,
             'Email': current_user.email,
@@ -78,10 +78,10 @@ def userinfo():
         else:
             user_info['Profile'] = None
             
-        return responsHandler.response_handler("USER_ADDED", HTTPStatus.OK, user_info)
+        return responseHandler.response_handler("USER_ADDED", HTTPStatus.OK, user_info)
     except Exception as e:
 
-        return responsHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
+        return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
 # @app.route('/delete_user/<int:user_id>', methods=['DELETE'])
@@ -97,13 +97,13 @@ def delete_user():
             if user:
                 db.session.delete(user)
                 db.session.commit()
-                return responsHandler.response_handler("USER_DELETE",HTTPStatus.OK)
+                return responseHandler.response_handler("USER_DELETE",HTTPStatus.OK)
             else:
-                return responsHandler.response_handler("USER_NOT_FOUND", HTTPStatus.NOT_FOUND)
+                return responseHandler.response_handler("USER_NOT_FOUND", HTTPStatus.NOT_FOUND)
         except Exception as e:
-            return responsHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
+            return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
     else:
-        return responsHandler.response_handler("SESSION_EXPIRED",HTTPStatus.SERVICE_UNAVAILABLE)
+        return responseHandler.response_handler("SESSION_EXPIRED",HTTPStatus.SERVICE_UNAVAILABLE)
 
 
 # Serve Profile Images

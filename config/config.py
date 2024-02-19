@@ -12,8 +12,8 @@ host = '127.0.0.1'
 db_name = "running_app"
 
 
-app.config['STATIC_FOLDER'] = 'static'
-app.config['STATIC_URL_PATH'] = '/static'
+# app.config['STATIC_FOLDER'] = 'static'
+# app.config['STATIC_URL_PATH'] = '/static'
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{user}:{pin}@{host}/{db_name}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key'

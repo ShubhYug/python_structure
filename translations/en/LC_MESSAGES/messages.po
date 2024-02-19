@@ -22,7 +22,7 @@ msgstr "Login successfully"
 msgid "INVALID_PASS"
 msgstr "Invalid password"
 
-msgid "INVALID_USER_EMAIL_CONTECT"
+msgid "INVALID_USER_EMAIL_CONTACT"
 msgstr "Invalid User Email/Contact"
 
 msgid "SESSION_EXPIRED"
