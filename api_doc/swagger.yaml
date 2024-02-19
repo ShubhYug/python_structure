@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Swagger Petstore - OpenAPI 3.0
-  description: This is GFlask Running app swagger api.
+  description: This is Flask Running app swagger api.
   termsOfService: http://swagger.io/terms/
   contact:
     email: apiteam@swagger.io
