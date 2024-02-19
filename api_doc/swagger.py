@@ -17,4 +17,5 @@ def setup_swagger_ui(app):
 
     @app.route('/api_doc/swagger.yaml')
     def send_swagger_json():
+        print()
         return send_from_directory('api_doc', 'swagger.yaml')
