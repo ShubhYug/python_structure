@@ -1,6 +1,7 @@
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import send_from_directory
 from flask_babel import Babel, _
+from flask import session
 from config.config import db
 from database.models.models import Members_Info
 from flask_migrate import Migrate
@@ -42,17 +43,24 @@ def unauthorized():
     return responseHandler.response_handler("SESSION_EXPIRED",HTTPStatus.UNAUTHORIZED)
 
 
-@app.route('/protected')
-@login_required
-def protected():
-    # Check if the current user is not an anonymous user
-    if not isinstance(current_user, AnonymousUserMixin):
-        user_id = current_user.id
-        # Proceed with accessing user-specific data
-        return responseHandler.response_handler("User ID", HTTPStatus.OK, user_id)
-    else:
-        return responseHandler.response_handler("SESSION_EXPIRED",HTTPStatus.SERVICE_UNAVAILABLE)
-    
+
+def protected_route():
+    try:
+        # Get CSRF token from request headers or body
+        csrf_token = request.headers.get('X-CSRF-Token')  # Example: CSRF token included in headers
+        # csrf_token = request.form.get('csrf_token')  # Example: CSRF token included in request body
+
+        # Validate CSRF token
+        if 'csrf_token' in session and csrf_token == session['csrf_token']:
+            # CSRF token is valid
+            return responseHandler.response_handler("SUCCESS", HTTPStatus.OK)
+        else:
+            # CSRF token is missing or invalid
+            return responseHandler.response_handler("INVALID_CSRF_TOKEN", HTTPStatus.UNAUTHORIZED)
+    except Exception as e:
+        return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
+
+
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -4,12 +4,15 @@ from modules.v1.auth.validator.forms import RegistrationForm
 from flask import request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
+from constants.folderConstants import STATIC_FILE_PATHS
 from flask_wtf.csrf import generate_csrf
 from middleware import responseHandler
+from flask import session
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from flask_babel import _
-from werkzeug.utils import secure_filename
+from constants.folderConstants import STATIC_FILE_PATHS
+
 
 
 # @app.route('/login', methods=['POST'])
@@ -18,9 +21,6 @@ def login():
         data = request.form  # Assuming JSON data is sent in the request body
         email_or_contact = data.get('email_or_contact')
         password = data.get('password') 
-        # data = request.json  # Assuming JSON data is sent in the request body
-        # email_or_contact = data.get('email_or_contact')
-        # password = data.get('password')
 
         # if not email_or_contact or not password:
         if not email_or_contact:
@@ -33,9 +33,14 @@ def login():
         if user:
             if check_password_hash(user.password_hash, password):
                 # Authentication successful
-                login_user(user)  # Log the user in
+                user.authenticated = True
+                db.session.add(user)
+                db.session.commit()
+                login_user(user, remember=True)
 
                 csrf_token = generate_csrf()
+                session['csrf_token'] = csrf_token
+                # print("session['csrf_token'] : ",session['csrf_token'])
                 data = user.id
                 return responseHandler.response_handler("LOGIN_SUCCESS", HTTPStatus.OK, data)
             else:
@@ -61,7 +66,8 @@ def logout():
 # @app.route('/register', methods=['POST'])
 def register():
     try:
-        form = RegistrationForm(request.form)
+        # form = RegistrationForm(request.form)
+        form = RegistrationForm()
         # data = request.json
 
         if form.validate():
@@ -72,10 +78,8 @@ def register():
             if existing_user:
                 return responseHandler.response_handler('EMAIL_CONTACT_EXIST', HTTPStatus.BAD_REQUEST)
 
-
-
             file = request.files['profile']
-            file.save('static/media/' + file.filename)
+            file.save(STATIC_FILE_PATHS['STATIC'] + file.filename)
             file_name = file.filename
 
             # Generate password hash
@@ -115,4 +119,3 @@ def register():
     except IntegrityError as e:
         
         return responseHandler.response_handler(e, HTTPStatus.INTERNAL_SERVER_ERROR)
-

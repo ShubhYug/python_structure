@@ -6,6 +6,7 @@ from flask_login import current_user, login_required
 from middleware import  responseHandler
 from http import HTTPStatus
 from modules.v1.profile.validator.user_form import UpdateProfileForm
+from constants.folderConstants import STATIC_FILE_PATHS
 
 
 @login_required
@@ -32,7 +33,7 @@ def update_profile():
                 user.group = data.get('group', user.group)
 
                 file = request.files['profile']
-                file.save('static/media/' + file.filename)
+                file.save(STATIC_FILE_PATHS['STATIC'] + file.filename)
                 user.profile = file.filename
 
                 db.session.commit()

@@ -1,9 +1,13 @@
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import  send_from_directory
+from constants.folderConstants import SWAGGER_CON_URL
 
 def setup_swagger_ui(app):
-    SWAGGER_URL = '/api/docs'  # URL for accessing the Swagger UI page
-    API_URL = '/api_doc/swagger.yaml'  # URL to your API documentation JSON file
+
+    # SWAGGER_URL = '/api/docs'  # URL for accessing the Swagger UI page
+    # API_URL = '/api_doc/swagger.yaml'  # URL to your API documentation JSON file
+    SWAGGER_URL = SWAGGER_CON_URL['SWAGGER_URL']
+    API_URL = SWAGGER_CON_URL['API_URL']
 
     swagger_ui_blueprint = get_swaggerui_blueprint(
         SWAGGER_URL,
