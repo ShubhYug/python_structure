@@ -138,3 +138,15 @@ msgstr "Veuillez entrer votre poids"
 
 msgid "WEIGHT_IN_DIGITS"
 msgstr "Le poids doit être compris entre 1 et 3 chiffres"
+
+msgid "EMAIL_REQUIRED"
+msgstr "L'e-mail est requis"
+
+msgid "DIGITS_ONLY"
+msgstr "Contenir uniquement des chiffres (nombre)"
+
+msgid "CONTAIN_CHAR"
+msgstr "Contenir uniquement des lettres (caractères)"
+
+msgid ""
+msgstr ""

@@ -1,4 +1,4 @@
-from config.config import  db
+from config.config import  db, app
 from database.models.models import Members_Info
 from modules.v1.auth.validator.forms import RegistrationForm
 from flask import request, jsonify
@@ -12,7 +12,6 @@ from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from flask_babel import _
 from constants.folderConstants import STATIC_FILE_PATHS
-
 
 
 # @app.route('/login', methods=['POST'])
@@ -40,7 +39,6 @@ def login():
 
                 csrf_token = generate_csrf()
                 session['csrf_token'] = csrf_token
-                # print("session['csrf_token'] : ",session['csrf_token'])
                 data = user.id
                 return responseHandler.response_handler("LOGIN_SUCCESS", HTTPStatus.OK, data)
             else:
@@ -62,13 +60,10 @@ def logout():
     except Exception as e:
         return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
     
-
 # @app.route('/register', methods=['POST'])
 def register():
     try:
-        # form = RegistrationForm(request.form)
         form = RegistrationForm()
-        # data = request.json
 
         if form.validate():
             # Check if email or contact already exists

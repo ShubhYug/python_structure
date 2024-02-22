@@ -1,0 +1,140 @@
+components:
+  schemas:
+    Register:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: fehguy
+        lastname:
+          type: string
+          example: fehguy
+        email:
+          type: string
+          example: example@email.com
+        contact:
+          type: string
+          example: '+91-0000000000'
+        dob:
+          type: string
+          example: YYYY-MM-DD
+        gender:
+          type: string
+          example: Male/Female
+        height:
+          type: integer
+          example: cm
+        weight:
+          type: integer
+          example: kg
+        country:
+          type: string
+          example: India
+        state:
+          type: string
+          example: MadhyPradesh
+        city:
+          type: string
+          example: Indore
+        pincode:
+          type: string
+          example: '452009'
+        group:
+          type: string
+          example: Class
+        profile:
+          type: string
+          description: Profile image
+          format: binary
+        password:
+          type: string
+          example: password
+        confirm_password:
+          type: string
+          example: confirm_password
+    
+    
+    Update:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: fehguy
+        lastname:
+          type: string
+          example: fehguy
+        dob:
+          type: string
+          example: YYYY-MM-DD
+        gender:
+          type: string
+          example: Male/Female
+        height:
+          type: integer
+          example: cm
+        weight:
+          type: integer
+          example: kg
+        country:
+          type: string
+          example: India
+        state:
+          type: string
+          example: MadhyPradesh
+        city:
+          type: string
+          example: Indore
+        pincode:
+          type: string
+          example: '452009'
+        group:
+          type: string
+          example: Class
+        profile:
+          type: string
+          description: Profile image
+          format: binary
+    
+    
+    User:
+      type: object
+      properties:
+        email_or_contact:
+          type: string
+          example: theUser
+        password:
+          type: string
+          example: '12345'
+      xml:
+        name: user
+  requestBodies:
+    Pet:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/User'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://petstore3.swagger.io/oauth/authorize'
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

@@ -1,11 +1,9 @@
-from flask_swagger_ui import get_swaggerui_blueprint
-from flask import send_from_directory
 from flask_babel import Babel, _
 from flask import session
 from config.config import db
 from database.models.models import Members_Info
 from flask_migrate import Migrate
-from flask_login import LoginManager, login_required, AnonymousUserMixin, current_user
+from flask_login import LoginManager
 from modules.v1.auth.routes.urls import auth_bp
 from modules.v1.profile.routes.urls import user_bp
 from http import HTTPStatus
@@ -68,7 +66,6 @@ def load_user(user_id):
     return db.session.get(Members_Info, int(user_id))
 
 swagger.setup_swagger_ui(app)
-
 
 if __name__ == '__main__':
      

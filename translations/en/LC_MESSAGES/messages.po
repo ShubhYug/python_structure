@@ -59,13 +59,13 @@ msgid "PLS_ENTER_FNAME"
 msgstr "Please enter your first name"
 
 msgid "FNAME_MIM_2CHAR"
-msgstr "First name must be at least 2 characters long"
+msgstr "The First name must be between 2 and 100 characters in length"
 
 msgid "PLS_ENTER_LNAME"
 msgstr "Please enter your last name"
 
 msgid "LNAME_MIM_2CHAR"
-msgstr "Last name must be at least 2 characters long"
+msgstr "The Last name must be between 2 and 100 characters in length"
 
 msgid "EMAIL_INVALID"
 msgstr "Invalid email address"
@@ -113,7 +113,7 @@ msgid "RGX_PASSWORD_ERROR"
 msgstr "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
 
 msgid "ENTRY_CON_PASS"
-msgstr "Please confirm your password"
+msgstr "Password not match"
 
 msgid "PASS_MATCH"
 msgstr "Passwords must match"
@@ -124,8 +124,8 @@ msgstr "Only image files are allowed"
 msgid "UPLOAD_IMAGE"
 msgstr "Please upload a profile image"
 
-msgid ""
-msgstr ""
+msgid "NOT_VALID_FOR"
+msgstr "Not a valid integer value"
 
 msgid "ENTER_HEIGHT"
 msgstr "Please enter your height"
@@ -141,3 +141,25 @@ msgstr "Please enter your weight"
 
 msgid "WEIGHT_IN_DIGITS"
 msgstr "Weight must be between 1 and 3 digits"
+
+
+msgid "EMAIL_REQUIRED"
+msgstr "Email is required"
+
+msgid "DIGITS_ONLY"
+msgstr "Contain only digits(number)"
+
+msgid "CONTAIN_CHAR"
+msgstr "Contain only letters(characters)"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""

@@ -1,0 +1,157 @@
+paths:
+  Register:
+    post:
+      tags:
+        - auth
+      summary: Add a new user
+      description: Add a new user
+      operationId: Register
+      requestBody:
+        description: Create a new user
+        content:
+          multipart/form-data:
+            schema:
+              $ref: 'components.yaml#/components/schemas/Register'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            multipart/form-data:
+              schema:
+                $ref: 'components.yaml#/components/schemas/Register'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+  /login:
+    post:
+      tags:
+        - auth
+      summary: User Login
+      description: User login 
+      operationId: Login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: 'components.yaml#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: 'components.yaml#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: 'components.yaml#/components/schemas/User'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            multipart/form-data:
+              schema:
+                $ref: 'components.yaml#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+  /logout:
+    get:
+      tags:
+        - auth
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+  /profile:
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: Profile
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Update user
+      description: This can only be done by the logged in user.
+      operationId: Profile
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be check
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent user in the store
+        content:
+          multipart/form-data:
+            schema:
+              $ref: 'components.yaml#/components/schemas/Update'
+          application/xml:
+            schema:
+              $ref: 'components.yaml#/components/schemas/Update'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: 'components.yaml#/components/schemas/Update'
+      responses:
+        default:
+          description: successful operation
+    get:
+      tags:
+        - user
+      summary: User details
+      description: User details
+      operationId: Profile
+      responses:
+        '200':
+          description: successful operation
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+      security:
+        - api_key: []
+  /images/{filename}:
+    get:
+      tags:
+        - user
+      summary: Fetch profile image by profile name
+      description: Retrieve a profile image by its name
+      operationId: getProfileImageByName
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+          description: Name of the profile image to fetch
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Profile image not found
+      security:
+        - api_key: []

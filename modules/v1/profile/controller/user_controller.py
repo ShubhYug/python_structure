@@ -12,8 +12,11 @@ from constants.folderConstants import STATIC_FILE_PATHS
 @login_required
 def update_profile():
     try:
-        form = UpdateProfileForm(request.form)
+        print('inside')
+        form = UpdateProfileForm()
+        print('UpdateProfileForm : ',form)
         if form.validate():
+            print('inside validate')
             print('user',current_user)
             data = form.data
             user_id = current_user.id

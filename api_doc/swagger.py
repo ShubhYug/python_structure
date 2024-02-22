@@ -1,5 +1,7 @@
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask import  send_from_directory
+from flask import send_file
+
 from constants.folderConstants import SWAGGER_CON_URL
 
 def setup_swagger_ui(app):
@@ -23,3 +25,11 @@ def setup_swagger_ui(app):
     def send_swagger_json():
 
         return send_from_directory('api_doc', 'swagger.yaml')
+    
+    @app.route('/swagger/main_swagger.yaml')
+    def serve_main_swagger():
+        return send_file('swagger/main_swagger.yaml')
+
+    @app.route('/swagger/components.yaml')
+    def serve_components():
+        return send_file('swagger/components.yaml')
