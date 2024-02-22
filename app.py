@@ -1,5 +1,5 @@
 from flask_babel import Babel, _
-from flask import session
+from flask import session, request
 from config.config import db
 from database.models.models import Members_Info
 from flask_migrate import Migrate
@@ -8,7 +8,6 @@ from modules.v1.auth.routes.urls import auth_bp
 from modules.v1.profile.routes.urls import user_bp
 from http import HTTPStatus
 from middleware import responseHandler
-from flask import request
 from app_name import app
 from api_doc import swagger
 

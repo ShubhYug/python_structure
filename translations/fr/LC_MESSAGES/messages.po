@@ -148,5 +148,8 @@ msgstr "Contenir uniquement des chiffres (nombre)"
 msgid "CONTAIN_CHAR"
 msgstr "Contenir uniquement des lettres (caractères)"
 
-msgid ""
-msgstr ""
+msgid "PASS_REQUIRED"
+msgstr "Mot de passe requis"
+
+msgid "PLEASE_FEEL_ALL"
+msgstr "Merci de remplir les deux champs"

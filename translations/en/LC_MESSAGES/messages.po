@@ -146,14 +146,19 @@ msgstr "Weight must be between 1 and 3 digits"
 msgid "EMAIL_REQUIRED"
 msgstr "Email is required"
 
+
+msgid "PASS_REQUIRED"
+msgstr "Password is required"
+
+
 msgid "DIGITS_ONLY"
 msgstr "Contain only digits(number)"
 
 msgid "CONTAIN_CHAR"
 msgstr "Contain only letters(characters)"
 
-msgid ""
-msgstr ""
+msgid "PLEASE_FEEL_ALL"
+msgstr "Please fill in both fields"
 
 msgid ""
 msgstr ""

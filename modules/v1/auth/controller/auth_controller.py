@@ -1,17 +1,15 @@
 from config.config import  db, app
 from database.models.models import Members_Info
 from modules.v1.auth.validator.forms import RegistrationForm
-from flask import request, jsonify
+from flask import request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from constants.folderConstants import STATIC_FILE_PATHS
 from flask_wtf.csrf import generate_csrf
 from middleware import responseHandler
-from flask import session
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from flask_babel import _
-from constants.folderConstants import STATIC_FILE_PATHS
 
 
 # @app.route('/login', methods=['POST'])
@@ -20,13 +18,13 @@ def login():
         data = request.form  # Assuming JSON data is sent in the request body
         email_or_contact = data.get('email_or_contact')
         password = data.get('password') 
-
+        if not email_or_contact and not password:
+            return responseHandler.response_handler("PLEASE_FEEL_ALL", HTTPStatus.BAD_REQUEST)
         # if not email_or_contact or not password:
-        if not email_or_contact:
-            if password:
-                return responseHandler.response_handler("EMAIL_CONTACT_REQ", HTTPStatus.BAD_REQUEST)
-            
+        elif not email_or_contact:
             return responseHandler.response_handler("EMAIL_CONTACT_REQ", HTTPStatus.BAD_REQUEST)
+        elif not password:
+                return responseHandler.response_handler("PASS_REQUIRED", HTTPStatus.BAD_REQUEST)
 
         user = Members_Info.query.filter((Members_Info.email == email_or_contact) | (Members_Info.contact == email_or_contact)).first()
         if user:
@@ -35,7 +33,7 @@ def login():
                 user.authenticated = True
                 db.session.add(user)
                 db.session.commit()
-                login_user(user, remember=True)
+                login_user(user, remember=True) 
 
                 csrf_token = generate_csrf()
                 session['csrf_token'] = csrf_token
