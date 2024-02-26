@@ -1,7 +1,7 @@
 # from .config import app
 
 from flask_sqlalchemy import SQLAlchemy
-from config.config import app
+from app_name import app
 
 # Create an instance of SQLAlchemy
 db = SQLAlchemy(app)

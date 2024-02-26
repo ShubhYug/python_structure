@@ -1,13 +1,12 @@
-from config.config import  db, app
+from config.config import  db
 from database.models.models import Members_Info
-from flask import request, url_for,send_from_directory,jsonify
+from flask import request, url_for, jsonify
 from flask_babel import _
 from flask_login import current_user, login_required
 from middleware import  responseHandler
 from http import HTTPStatus
 from modules.v1.profile.validator.user_form import UpdateProfileForm
 from constants.folderConstants import STATIC_FILE_PATHS
-
 
 @login_required
 def update_profile():
@@ -108,11 +107,3 @@ def delete_user():
             return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
     else:
         return responseHandler.response_handler("SESSION_EXPIRED",HTTPStatus.SERVICE_UNAVAILABLE)
-
-
-# Serve Profile Images
-@app.route('/images/<filename>')
-def serve_image(filename):
-    print("user image",app.config['UPLOAD_FOLDER'])
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-

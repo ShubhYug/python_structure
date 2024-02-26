@@ -18,13 +18,16 @@ servers:
 
 
 tags:
+
   - name: auth
     description: Everything about auth
+
   - name: user
     description: Access to user profile
 
 
 paths:
+
   /register:
     post:
       tags:
@@ -147,6 +150,48 @@ paths:
       security:
         - api_key: []
   
+  /mail:
+    get:
+      tags:
+        - user
+      summary: send Email
+      description: User details
+      operationId: Profile
+      responses:
+        '200':
+          description: email send successfully
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+
+      security:
+        - api_key: []
+
+  /reset_password:
+    post:
+      tags:
+        - auth
+      summary: Reset_password
+      description: Reset_password 
+      operationId: Reset_password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reset_password'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+
   /images/{filename}:
     get:
       tags:
@@ -176,6 +221,7 @@ paths:
 
 
 components:
+
   schemas:
     
     Register:
@@ -272,6 +318,13 @@ components:
           description: Profile image
           format: binary
     
+    Reset_password:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@gmail.com
+    
     User:
       type: object
       properties:
@@ -315,7 +368,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/User'
-
 
 
   securitySchemes:

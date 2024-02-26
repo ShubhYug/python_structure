@@ -1,9 +1,0 @@
-tags:
-  - name: auth
-    description: Everything about auth
-
-  - name: user
-    description: Access to user profile
- 
-  - name: extra
-    description: Operations about user

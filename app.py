@@ -8,9 +8,13 @@ from modules.v1.auth.routes.urls import auth_bp
 from modules.v1.profile.routes.urls import user_bp
 from http import HTTPStatus
 from middleware import responseHandler
-from app_name import app
+from app_name import app 
 from api_doc import swagger
+from flask import Flask
 
+# app = Flask(__name__, static_url_path='/static')
+# Set the static URL path
+# app.static_url_path = '/static'
 
 babel = Babel(app)
 # # Define supported languages
@@ -57,8 +61,6 @@ def protected_route():
     except Exception as e:
         return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
 
-
-
 @login_manager.user_loader
 def load_user(user_id):
     # return Members_Info.query.get(int(user_id))
@@ -67,5 +69,5 @@ def load_user(user_id):
 swagger.setup_swagger_ui(app)
 
 if __name__ == '__main__':
-     
+    # app.run(debug=True)
     app.run(debug=True, host='192.168.1.119')

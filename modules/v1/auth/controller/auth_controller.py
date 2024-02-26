@@ -1,7 +1,7 @@
-from config.config import  db, app
+from config.config import  db
 from database.models.models import Members_Info
 from modules.v1.auth.validator.forms import RegistrationForm
-from flask import request, jsonify, session
+from flask import request, jsonify, session, render_template, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from constants.folderConstants import STATIC_FILE_PATHS
@@ -10,6 +10,8 @@ from middleware import responseHandler
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from flask_babel import _
+import random
+from libraries.email import send_email
 
 
 # @app.route('/login', methods=['POST'])
@@ -60,6 +62,7 @@ def logout():
     
 # @app.route('/register', methods=['POST'])
 def register():
+
     try:
         form = RegistrationForm()
 
@@ -112,3 +115,36 @@ def register():
     except IntegrityError as e:
         
         return responseHandler.response_handler(e, HTTPStatus.INTERNAL_SERVER_ERROR)
+
+
+# Generate 4-digit PIN
+def generate_pin():
+    return str(random.randint(1000, 9999))
+
+# @app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        # Check if email is valid and exists in the database
+        user = Members_Info.query.filter_by(email=email).first()
+        if user:
+            # If email is valid, generate a PIN and send it via email
+            pin = generate_pin()
+            subject = 'TTS- Reset Password'
+            toEmail = email
+
+            image_url = url_for('static', filename='media/Gold_icon.png', _external=True)    
+            html_template = render_template('email/resetPassword.html', image_url = image_url, pin = pin)
+            return send_email(toEmail, subject, html_template)
+        return 'Email not registered.'
+    return 'forgot_password error'
+
+
+# @app.route('/verify_pin', methods=['GET', 'POST'])
+def verify_pin():
+    if request.method == 'POST':
+        pin = request.form['pin']
+        # Verify the PIN
+        # Proceed with password reset if PIN is valid
+        return 'PIN verified. You can now reset your password.'
+    return render_template('verify_pin.html')
