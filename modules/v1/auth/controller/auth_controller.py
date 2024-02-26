@@ -60,6 +60,7 @@ def logout():
     except Exception as e:
         return responseHandler.response_handler(str(e), HTTPStatus.INTERNAL_SERVER_ERROR)
     
+    
 # @app.route('/register', methods=['POST'])
 def register():
 
@@ -121,6 +122,7 @@ def register():
 def generate_pin():
     return str(random.randint(1000, 9999))
 
+
 # @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password():
     if request.method == 'POST':
@@ -133,7 +135,7 @@ def reset_password():
             subject = 'TTS- Reset Password'
             toEmail = email
 
-            image_url = url_for('static', filename='media/Gold_icon.png', _external=True)    
+            image_url = url_for('static', filename='media/download.png', _external=True)    
             html_template = render_template('email/resetPassword.html', image_url = image_url, pin = pin)
             return send_email(toEmail, subject, html_template)
         return 'Email not registered.'

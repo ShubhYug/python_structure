@@ -73,9 +73,7 @@ def userinfo():
         }
 
         # Get the URL or path to the profile picture
-        #http://192.168.1.119:5000//images/abc1.jpg
         if current_user.profile:
-            # profile_url = request.host_url + 'media/' + current_user.profile
             profile_url = url_for('static', filename=f'media/{current_user.profile}', _external=True)
             user_info['Profile'] = profile_url
         else:

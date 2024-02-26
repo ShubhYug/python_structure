@@ -18,9 +18,6 @@ def validate_file_size(form, field):
 class UpdateProfileForm(FlaskForm):
     firstname = wtf.StringField('First Name', validators=[DataRequired(message='PLS_ENTER_FNAME'), Length(min=2, max=100, message='FNAME_MIM_2CHAR')])
     lastname = wtf.StringField('Last Name', validators=[DataRequired(message='PLS_ENTER_LNAME'), Length(min=2, max=100, message='LNAME_MIM_2CHAR')])
-    # email = StringField('Email', [validators.Email(message='EMAIL_INVALID'), validators.DataRequired(message='EMAIL_REQUIRED')])
-    # contact = IntegerField('Contact', validators=[DataRequired(message='NOT_VALID_FOR'),Length(min=7, max=15, message='CONTECT_MIM7_MAX15')])
-
     dob = wtf.DateField('Date of Birth', validators=[DataRequired(message='PLEASE_ENTER_DOB')], format='%Y-%m-%d')
     gender = wtf.StringField('Gender', validators=[DataRequired(message='SELECT_GENTER')])
     height = wtf.StringField('Height', validators=[Regexp('^\d+$', message='DIGITS_ONLY') , DataRequired(message='ENTER_HEIGHT'),Length(min=2, max=3, message='HEIGHT_IN_DIGITS')])
@@ -39,15 +36,4 @@ class UpdateProfileForm(FlaskForm):
 
 
 
-    # password = PasswordField('Password', validators=[
-    #     DataRequired(message='ENTRY_PASS'),
-    #     Length(min=8, message='PASSWORD_MIM8'),
-    #     validators.Regexp(
-    #         regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$",
-    #         message="RGX_PASSWORD_ERROR"
-    #     )
-    # ])
-    # confirm_password = PasswordField('Confirm Password', validators=[
-    #     DataRequired(message="ENTRY_CON_PASS"),
-    #     EqualTo('password', message="PASS_MATCH")
-    # ])
+

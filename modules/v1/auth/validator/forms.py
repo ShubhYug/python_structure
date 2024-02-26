@@ -14,7 +14,8 @@ def validate_file_size(form, field):
     max_size = 10 * 1024 * 1024  # 10 MB
     if field.data and len(field.data.read()) > max_size:
         raise ValidationError('File size must be less than 10 MB.')
-
+    
+    
 class RegistrationForm(FlaskForm):
     firstname = wtf.StringField('First Name', validators=[DataRequired(message='PLS_ENTER_FNAME'), Length(min=2, max=100, message='FNAME_MIM_2CHAR')])
     lastname = wtf.StringField('Last Name', validators=[DataRequired(message='PLS_ENTER_LNAME'), Length(min=2, max=100, message='LNAME_MIM_2CHAR')])

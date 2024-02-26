@@ -11,10 +11,8 @@ from middleware import responseHandler
 from app_name import app 
 from api_doc import swagger
 from flask import Flask
+from seeds.seed_data import insert_static_data
 
-# app = Flask(__name__, static_url_path='/static')
-# Set the static URL path
-# app.static_url_path = '/static'
 
 babel = Babel(app)
 # # Define supported languages
@@ -63,11 +61,27 @@ def protected_route():
 
 @login_manager.user_loader
 def load_user(user_id):
-    # return Members_Info.query.get(int(user_id))
     return db.session.get(Members_Info, int(user_id))
 
 swagger.setup_swagger_ui(app)
 
+from flask.cli import AppGroup
+from seeds.seed_data import insert_static_data
+
+# seed data insert 
+#command to fire : flask seed insert
+seed_cli = AppGroup('seed')
+@seed_cli.command('insert')
+def seed_insert():
+    """Insert static data into the database."""
+    insert_static_data()
+    print("Static data inserted successfully.")
+
+app.cli.add_command(seed_cli)
+
+
+
 if __name__ == '__main__':
     # app.run(debug=True)
+
     app.run(debug=True, host='192.168.1.119')

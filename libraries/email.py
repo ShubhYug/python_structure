@@ -26,8 +26,7 @@ mail = Mail(app)
 
 # @app.route("/mail")
 def send_email(toEmail, subject, html_template):  
-    # Create a Message object with the HTML content bharat.mindiii7@gmail.com , shubhamsameliyamindiii@gmail.com
-    msg = Message(subject, sender = 'shubhamsameliyamindiii@gmail.com', recipients = [toEmail])
+    msg = Message(subject, sender = os.getenv('MAIL_USERNAME') , recipients = [toEmail])
     msg.html = html_template
     # Send the email
     mail.send(msg)
