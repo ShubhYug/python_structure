@@ -1,0 +1,20 @@
+[
+    {
+        "firstname": "abc",
+        "lastname": "def",
+        "email": "abcdefgh@gmail.com",
+        "contact": "5544998877",
+        "dob": "1999-04-04",
+        "gender": "male",
+        "height": 165,
+        "weight": 85,
+        "country": "india",
+        "state": "mp",
+        "city": "indore",
+        "pincode": "452009",
+        "profile" : "abc.png",
+        "group": "classA",
+        "password_hash": "Vinit@12"
+        
+    }
+]

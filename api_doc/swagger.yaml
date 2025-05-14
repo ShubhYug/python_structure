@@ -1,0 +1,385 @@
+openapi: 3.0.3
+info:
+  title: Flask Python
+  description: This is Flask Running app swagger api.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://192.168.1.119:5000
+  - url: http://127.0.0.1:5000
+
+
+tags:
+
+  - name: auth
+    description: Everything about auth
+
+  - name: user
+    description: Access to user profile
+
+
+paths:
+
+  /register:
+    post:
+      tags:
+        - auth
+      summary: Add a new user
+      description: Add a new user
+      operationId: Register
+      requestBody:
+        description: Create a new user
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/Register'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+  
+  /login:
+    post:
+      tags:
+        - auth
+      summary: User Login
+      description: User login 
+      operationId: Login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+  
+  /logout:
+    get:
+      tags:
+        - auth
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+  
+  /profile:
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: Profile
+  
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Update user
+      description: This can only be done by the logged in user.
+      operationId: Profile
+      
+      requestBody:
+        description: Update an existent user in the store
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Update'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Update'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Update'
+      responses:
+        default:
+          description: successful operation
+    get:
+      tags:
+        - user
+      summary: User details
+      description: User details
+      operationId: Profile
+      responses:
+        '200':
+          description: successful operation
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+      security:
+        - api_key: []
+  
+  /mail:
+    get:
+      tags:
+        - user
+      summary: send Email
+      description: User details
+      operationId: Profile
+      responses:
+        '200':
+          description: email send successfully
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+
+      security:
+        - api_key: []
+
+  /reset_password:
+    post:
+      tags:
+        - auth
+      summary: Reset_password
+      description: Reset_password 
+      operationId: Reset_password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reset_password'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+
+  /images/{filename}:
+    get:
+      tags:
+        - user
+      summary: Fetch profile image by profile name
+      description: Retrieve a profile image by its name
+      operationId: getProfileImageByName
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+          description: Name of the profile image to fetch
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Profile image not found
+      security:
+        - api_key: []
+
+
+components:
+
+  schemas:
+    
+    Register:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: fehguy
+        lastname:
+          type: string
+          example: fehguy
+        email:
+          type: string
+          example: example@email.com
+        contact:
+          type: string
+          example: '+91-0000000000'
+        dob:
+          type: string
+          example: YYYY-MM-DD
+        gender:
+          type: string
+          example: Male/Female
+        height:
+          type: integer
+          example: cm
+        weight:
+          type: integer
+          example: kg
+        country:
+          type: string
+          example: India
+        state:
+          type: string
+          example: MadhyPradesh
+        city:
+          type: string
+          example: Indore
+        pincode:
+          type: string
+          example: '452009'
+        group:
+          type: string
+          example: Class
+        profile:
+          type: string
+          description: Profile image
+          format: binary
+        password:
+          type: string
+          example: password
+        confirm_password:
+          type: string
+          example: confirm_password
+    
+    Update:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: fehguy
+        lastname:
+          type: string
+          example: fehguy
+        dob:
+          type: string
+          example: YYYY-MM-DD
+        gender:
+          type: string
+          example: Male/Female
+        height:
+          type: integer
+          example: cm
+        weight:
+          type: integer
+          example: kg
+        country:
+          type: string
+          example: India
+        state:
+          type: string
+          example: MadhyPradesh
+        city:
+          type: string
+          example: Indore
+        pincode:
+          type: string
+          example: '452009'
+        group:
+          type: string
+          example: Class
+        profile:
+          type: string
+          description: Profile image
+          format: binary
+    
+    Reset_password:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@gmail.com
+    
+    User:
+      type: object
+      properties:
+        email_or_contact:
+          type: string
+          example: t@gmail.com
+        password:
+          type: string
+          example: 'Vinit@12'
+      xml:
+        name: user
+    
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  
+  requestBodies:
+    Pet:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/User'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+
+
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://petstore3.swagger.io/oauth/authorize'
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

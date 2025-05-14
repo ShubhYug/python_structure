@@ -1,0 +1,170 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+
+msgid "EMAIL_CONTACT_EXIST"
+msgstr "Email or contact already exists"
+
+msgid "SUCCESSFULL_ADDED"
+msgstr "User successfully Added"
+
+msgid "VALIDATION_FAILED"
+msgstr "Validation failed"
+
+msgid "EMAIL_CONTACT_REQ"
+msgstr "Email/Contact are required"
+
+msgid "LOGIN_SUCCESS"
+msgstr "Login successfully"
+
+msgid "INVALID_PASS"
+msgstr "Invalid password"
+
+msgid "INVALID_USER_EMAIL_CONTACT"
+msgstr "Invalid User Email/Contact"
+
+msgid "SESSION_EXPIRED"
+msgstr "Your session has expired or you are not logged in."
+
+msgid "USER_ID"
+msgstr "User ID"
+
+msgid "UPDATE_PROFILE"
+msgstr "Profile updated successfully."
+
+msgid "NOT_FOUND"
+msgstr "User not found"
+
+msgid "USER_ADDED"
+msgstr "User Details"
+
+msgid "USER_DELETE"
+msgstr "User deleted successfully"
+
+msgid "LOGOUT_SUCCESS"
+msgstr "Logout successfully"
+
+msgid "False"
+msgstr "False"
+
+msgid "True"
+msgstr "True"
+
+msgid "MISSIOG_FIELDS"
+msgstr "Missing required fields"
+
+msgid "PLS_ENTER_FNAME"
+msgstr "Please enter your first name"
+
+msgid "FNAME_MIM_2CHAR"
+msgstr "The First name must be between 2 and 100 characters in length"
+
+msgid "PLS_ENTER_LNAME"
+msgstr "Please enter your last name"
+
+msgid "LNAME_MIM_2CHAR"
+msgstr "The Last name must be between 2 and 100 characters in length"
+
+msgid "EMAIL_INVALID"
+msgstr "Invalid email address"
+
+msgid "CONTECT_MIM7_MAX15"
+msgstr "Contact number must be between 7 and 15 characters"
+
+msgid "PLEASE_ENTER_DOB"
+msgstr "Please enter your date of birth"
+
+msgid "SELECT_GENTER"
+msgstr "Please select your gender"
+
+msgid "ENTRY_COUNTRY"
+msgstr "Please enter your country"
+
+msgid "COUNTRY_MAX50"
+msgstr "Country name must be less than 50 characters"
+
+msgid "ENTRY_STATE"
+msgstr "Please enter your state"
+
+msgid "STATE_MAX50"
+msgstr "State name must be less than 50 characters"
+
+msgid "ENTRY_CITY"
+msgstr "Please enter your city"
+
+msgid "CITY_MAX50"
+msgstr "City name must be less than 50 characters"
+
+msgid "ENTRY_PINCODE"
+msgstr "Please enter your pincode"
+
+msgid "PINCODE_MAX15"
+msgstr "Pincode must be less than 15 characters"
+
+msgid "ENTRY_PASS"
+msgstr "Please enter your password"
+
+msgid "PASSWORD_MIM8"
+msgstr "Password must be at least 8 characters long"
+
+msgid "RGX_PASSWORD_ERROR"
+msgstr "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+
+msgid "ENTRY_CON_PASS"
+msgstr "Password not match"
+
+msgid "PASS_MATCH"
+msgstr "Passwords must match"
+
+msgid "IMAGE_FORMATE"
+msgstr "Only image files are allowed"
+
+msgid "UPLOAD_IMAGE"
+msgstr "Please upload a profile image"
+
+msgid "NOT_VALID_FOR"
+msgstr "Not a valid integer value"
+
+msgid "ENTER_HEIGHT"
+msgstr "Please enter your height"
+
+msgid "HEIGHT_IN_DIGITS"
+msgstr "Height must be between 1 and 3 digits"
+
+msgid "HEIGHT_IN_DIGITS"
+msgstr "Height must be between 1 and 3 digits"
+
+msgid "ENTER_WEIGHT"
+msgstr "Please enter your weight"
+
+msgid "WEIGHT_IN_DIGITS"
+msgstr "Weight must be between 1 and 3 digits"
+
+
+msgid "EMAIL_REQUIRED"
+msgstr "Email is required"
+
+
+msgid "PASS_REQUIRED"
+msgstr "Password is required"
+
+
+msgid "DIGITS_ONLY"
+msgstr "Contain only digits(number)"
+
+msgid "CONTAIN_CHAR"
+msgstr "Contain only letters(characters)"
+
+msgid "PLEASE_FEEL_ALL"
+msgstr "Please fill in both fields"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
